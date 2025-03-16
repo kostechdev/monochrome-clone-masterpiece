@@ -1,189 +1,182 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import Button from '../common/Button';
-import { Check } from 'lucide-react';
-
-interface PlanFeature {
-  text: string;
-  available: boolean;
-}
+import Button from '@/components/common/Button';
+import { Check, X } from 'lucide-react';
 
 interface PricingPlanProps {
   name: string;
   price: string;
   description: string;
-  features: PlanFeature[];
+  features: { text: string; available: boolean }[];
   popular?: boolean;
   className?: string;
+  animationDelay?: string;
 }
 
-const PricingPlan: React.FC<PricingPlanProps> = ({
-  name,
-  price,
-  description,
-  features,
-  popular = false,
-  className
-}) => {
+const PricingPlan = ({ 
+  name, 
+  price, 
+  description, 
+  features, 
+  popular, 
+  className,
+  animationDelay
+}: PricingPlanProps) => {
   return (
     <div 
       className={cn(
-        "rounded-xl border bg-card p-6 relative card-hover",
-        popular ? "border-primary shadow-lg" : "border-border",
+        "bg-white rounded-lg border overflow-hidden transition-all flex flex-col",
+        popular 
+          ? "border-black shadow-md scale-[1.02] z-10" 
+          : "border-gray-200 hover:border-gray-300 hover:shadow-sm",
         className
       )}
+      style={{ animationDelay }}
     >
       {popular && (
-        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
+        <div className="bg-black text-white text-center text-sm font-medium py-1.5">
           Paling Populer
         </div>
       )}
-      <div className={popular ? "pt-4" : ""}>
-        <h3 className="text-xl font-bold">{name}</h3>
-        <p className="text-muted-foreground mt-2 mb-4">{description}</p>
+      
+      <div className="p-6 flex-grow">
+        <h3 className="text-xl font-bold mb-2">{name}</h3>
+        <p className="text-gray-600 mb-4">{description}</p>
+        
         <div className="mb-6">
-          <span className="text-3xl font-bold">Rp {price}</span>
-          <span className="text-muted-foreground">/bulan</span>
+          <span className="text-3xl font-bold">{price}</span>
+          {price !== 'Hubungi Kami' && <span className="text-gray-500">/bulan</span>}
         </div>
-
-        <Button 
-          variant={popular ? "default" : "outline"} 
-          fullWidth
-          className="mb-6"
-        >
-          {popular ? "Pilih Paket Ini" : "Mulai Sekarang"}
-        </Button>
-
-        <ul className="space-y-3">
+        
+        <ul className="space-y-3 mb-6">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-3">
-              <div className={cn(
-                "w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                feature.available ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
-              )}>
-                {feature.available ? <Check className="w-3 h-3" /> : "×"}
-              </div>
-              <span className={feature.available ? "" : "text-muted-foreground"}>{feature.text}</span>
+            <li key={index} className="flex items-start">
+              {feature.available ? (
+                <Check className="h-5 w-5 text-black flex-shrink-0 mr-2 mt-0.5" />
+              ) : (
+                <X className="h-5 w-5 text-gray-400 flex-shrink-0 mr-2 mt-0.5" />
+              )}
+              <span className={!feature.available ? "text-gray-400" : ""}>
+                {feature.text}
+              </span>
             </li>
           ))}
         </ul>
+      </div>
+      
+      <div className="p-6 pt-0 mt-auto">
+        <Button 
+          variant={popular ? "default" : "outline"} 
+          fullWidth
+        >
+          {price === 'Hubungi Kami' ? 'Hubungi Kami' : 'Pilih Paket'}
+        </Button>
       </div>
     </div>
   );
 };
 
-const PricingSection: React.FC = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+const PricingSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    
+    const section = document.getElementById('pricing');
+    if (section) {
+      observer.observe(section);
+    }
+    
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
 
-  const basicFeatures = [
-    { text: "1 Outlet", available: true },
-    { text: "1 Kasir", available: true },
-    { text: "Unlimited Produk", available: true },
-    { text: "Manajemen Stok Dasar", available: true },
-    { text: "Laporan Penjualan", available: true },
-    { text: "Dukungan Email", available: true },
-    { text: "Integrasi Pembayaran Digital", available: false },
-    { text: "Analitik Lanjutan", available: false },
-    { text: "API Akses", available: false },
-  ];
-
-  const proFeatures = [
-    { text: "5 Outlet", available: true },
-    { text: "5 Kasir", available: true },
-    { text: "Unlimited Produk", available: true },
-    { text: "Manajemen Stok Lengkap", available: true },
-    { text: "Laporan Bisnis Komprehensif", available: true },
-    { text: "Dukungan Prioritas 24/7", available: true },
-    { text: "Integrasi Pembayaran Digital", available: true },
-    { text: "Analitik Lanjutan", available: true },
-    { text: "API Akses", available: false },
-  ];
-
-  const enterpriseFeatures = [
-    { text: "Outlet Tak Terbatas", available: true },
-    { text: "Kasir Tak Terbatas", available: true },
-    { text: "Unlimited Produk", available: true },
-    { text: "Manajemen Stok Enterprise", available: true },
-    { text: "Dashboard Bisnis Custom", available: true },
-    { text: "Dukungan Dedicated Manager", available: true },
-    { text: "Integrasi Pembayaran Digital", available: true },
-    { text: "Analitik Lanjutan + AI", available: true },
-    { text: "API Akses Penuh", available: true },
+  const pricingPlans = [
+    {
+      name: "Basic",
+      price: "Rp 299.000",
+      description: "Untuk usaha kecil yang baru memulai",
+      features: [
+        { text: "1 Outlet / Cabang", available: true },
+        { text: "2 Pengguna / Karyawan", available: true },
+        { text: "Manajemen Inventori Dasar", available: true },
+        { text: "Laporan Penjualan", available: true },
+        { text: "Dukungan Email", available: true },
+        { text: "Integrasi dengan E-commerce", available: false },
+        { text: "Manajemen Pelanggan", available: false },
+        { text: "Analitik Lanjutan", available: false },
+      ]
+    },
+    {
+      name: "Professional",
+      price: "Rp 599.000",
+      description: "Untuk bisnis yang berkembang",
+      features: [
+        { text: "5 Outlet / Cabang", available: true },
+        { text: "10 Pengguna / Karyawan", available: true },
+        { text: "Manajemen Inventori Lengkap", available: true },
+        { text: "Laporan Bisnis Komprehensif", available: true },
+        { text: "Dukungan Prioritas 24/7", available: true },
+        { text: "Integrasi dengan E-commerce", available: true },
+        { text: "Manajemen Pelanggan", available: true },
+        { text: "Analitik Lanjutan", available: false },
+      ],
+      popular: true
+    },
+    {
+      name: "Enterprise",
+      price: "Hubungi Kami",
+      description: "Solusi custom untuk bisnis besar",
+      features: [
+        { text: "Outlet / Cabang Tak Terbatas", available: true },
+        { text: "Pengguna / Karyawan Tak Terbatas", available: true },
+        { text: "Manajemen Inventori Multi-gudang", available: true },
+        { text: "Laporan & Dashboard Custom", available: true },
+        { text: "Akun Manager Dedicated", available: true },
+        { text: "Integrasi API Lengkap", available: true },
+        { text: "CRM & Loyalitas Pelanggan", available: true },
+        { text: "Analitik Prediktif & AI", available: true },
+      ]
+    }
   ];
 
   return (
-    <section id="pricing" className="section-padding bg-secondary/50">
+    <section id="pricing" className="section-padding bg-gray-50">
       <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-12 animate-fade-in">
-          <h2 className="headline">Pilih Paket Sesuai Kebutuhan Bisnis Anda</h2>
+        <div className="text-center mb-16">
+          <h2 className="headline mb-4">Pilih Paket yang <span className="text-black">Tepat untuk Bisnis Anda</span></h2>
           <p className="subheadline">
-            Solusi yang fleksibel untuk semua skala bisnis dengan fitur yang dapat disesuaikan
+            Solusi yang fleksibel untuk semua ukuran bisnis. Bayar hanya untuk apa yang Anda butuhkan
           </p>
         </div>
-
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex items-center bg-secondary rounded-full p-1">
-            <button
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {pricingPlans.map((plan, index) => (
+            <PricingPlan
+              key={index}
+              name={plan.name}
+              price={plan.price}
+              description={plan.description}
+              features={plan.features}
+              popular={plan.popular}
               className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                billingCycle === 'monthly'
-                  ? "bg-white text-black shadow-sm"
-                  : "text-muted-foreground hover:text-black"
+                "opacity-0",
+                isVisible && "animate-fade-in opacity-100"
               )}
-              onClick={() => setBillingCycle('monthly')}
-            >
-              Bulanan
-            </button>
-            <button
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                billingCycle === 'yearly'
-                  ? "bg-white text-black shadow-sm"
-                  : "text-muted-foreground hover:text-black"
-              )}
-              onClick={() => setBillingCycle('yearly')}
-            >
-              Tahunan
-              <span className="ml-1 text-xs font-bold text-primary">-20%</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <PricingPlan
-            name="Basic"
-            price={billingCycle === 'monthly' ? "199.000" : "159.200"}
-            description="Untuk bisnis kecil yang baru memulai"
-            features={basicFeatures}
-            className="animate-slide-up"
-            style={{ animationDelay: "0s" }}
-          />
-          <PricingPlan
-            name="Pro"
-            price={billingCycle === 'monthly' ? "499.000" : "399.200"}
-            description="Untuk bisnis yang sedang berkembang"
-            features={proFeatures}
-            popular={true}
-            className="animate-slide-up"
-            style={{ animationDelay: "0.1s" }}
-          />
-          <PricingPlan
-            name="Enterprise"
-            price={billingCycle === 'monthly' ? "999.000" : "799.200"}
-            description="Untuk bisnis besar dengan kebutuhan khusus"
-            features={enterpriseFeatures}
-            className="animate-slide-up"
-            style={{ animationDelay: "0.2s" }}
-          />
-        </div>
-
-        <div className="mt-16 p-8 rounded-xl bg-card border border-border text-center max-w-3xl mx-auto animate-fade-in">
-          <h3 className="text-2xl font-bold mb-4">Butuh Solusi Kustom?</h3>
-          <p className="text-muted-foreground mb-6">
-            Kami menyediakan konsultasi gratis untuk membantu menemukan solusi yang tepat untuk bisnis Anda
-          </p>
-          <Button>Hubungi Tim Sales</Button>
+              animationDelay={`${index * 0.1}s`}
+            />
+          ))}
         </div>
       </div>
     </section>

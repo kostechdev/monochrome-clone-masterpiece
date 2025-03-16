@@ -3,14 +3,23 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import Button from '../common/Button';
 import { Menu, X } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Update scroll state
       setIsScrolled(window.scrollY > 20);
+      
+      // Calculate scroll progress
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      setScrollProgress(scrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -30,6 +39,11 @@ const Navbar: React.FC = () => {
           : 'bg-transparent'
       )}
     >
+      {/* Scroll Progress Indicator */}
+      <div className="absolute bottom-0 left-0 w-full h-1">
+        <Progress value={scrollProgress} className="h-1 rounded-none bg-gray-100" />
+      </div>
+
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="text-2xl font-bold">
