@@ -4,7 +4,7 @@ import Navbar from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
 import HeroSection from '@/components/ui/HeroSection';
 import FeatureSection from '@/components/ui/FeatureSection';
-import TestimonialSection from '@/components/ui/TestimonialSection';
+import AboutUsSection from '@/components/ui/AboutUsSection';
 import PricingSection from '@/components/ui/PricingSection';
 import ContactSection from '@/components/ui/ContactSection';
 
@@ -45,7 +45,7 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         <FeatureSection />
-        <TestimonialSection />
+        <AboutUsSection />
         <PricingSection />
         <ContactSection />
       </main>

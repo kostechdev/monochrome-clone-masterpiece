@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import Button from '../common/Button';
 import { Menu, X } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { LoginDialog, RegisterDialog } from '@/components/ui/AuthForms';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 md:px-6 lg:px-8',
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-sm'
+          ? 'bg-white/90 backdrop-blur-md shadow-sm translate-y-0'
           : 'bg-transparent'
       )}
     >
@@ -55,8 +55,8 @@ const Navbar: React.FC = () => {
           <a href="#features" className="font-medium hover:text-black link-hover">
             Fitur
           </a>
-          <a href="#testimonials" className="font-medium hover:text-black link-hover">
-            Testimonial
+          <a href="#about" className="font-medium hover:text-black link-hover">
+            Tentang Kami
           </a>
           <a href="#pricing" className="font-medium hover:text-black link-hover">
             Harga
@@ -68,12 +68,8 @@ const Navbar: React.FC = () => {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="outline" size="md">
-            Masuk
-          </Button>
-          <Button size="md">
-            Daftar Gratis
-          </Button>
+          <LoginDialog />
+          <RegisterDialog />
         </div>
 
         {/* Mobile Menu Button */}
@@ -108,11 +104,11 @@ const Navbar: React.FC = () => {
             Fitur
           </a>
           <a
-            href="#testimonials"
+            href="#about"
             className="text-lg font-medium py-2 border-b border-gray-100"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Testimonial
+            Tentang Kami
           </a>
           <a
             href="#pricing"
@@ -129,12 +125,8 @@ const Navbar: React.FC = () => {
             Kontak
           </a>
           <div className="flex flex-col gap-4 mt-4">
-            <Button variant="outline" fullWidth>
-              Masuk
-            </Button>
-            <Button fullWidth>
-              Daftar Gratis
-            </Button>
+            <LoginDialog />
+            <RegisterDialog />
           </div>
         </nav>
       </div>
