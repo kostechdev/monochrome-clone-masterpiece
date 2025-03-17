@@ -1,9 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const AboutUsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,9 +33,11 @@ const AboutUsSection = () => {
     <section id="about" className="section-padding">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="headline mb-4">Mengenal Lebih Jauh <span className="text-black">Tentang Kami</span></h2>
+          <h2 className="headline mb-4">
+            {t('aboutTitle')} <span className="text-black">{t('aboutHighlight')}</span>
+          </h2>
           <p className="subheadline">
-            Pelajari bagaimana KasirMonochrome dapat membantu bisnis Anda berkembang
+            {t('aboutDescription')}
           </p>
         </div>
         
@@ -55,16 +59,16 @@ const AboutUsSection = () => {
           
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
-              <h3 className="font-bold text-lg mb-2">Visi Kami</h3>
-              <p className="text-gray-600">Menyederhanakan operasional bisnis UMKM di seluruh Indonesia</p>
+              <h3 className="font-bold text-lg mb-2">{t('aboutVision')}</h3>
+              <p className="text-gray-600">{t('aboutVisionDesc')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
-              <h3 className="font-bold text-lg mb-2">Misi Kami</h3>
-              <p className="text-gray-600">Menyediakan teknologi kasir yang mudah, terjangkau dan dapat diandalkan</p>
+              <h3 className="font-bold text-lg mb-2">{t('aboutMission')}</h3>
+              <p className="text-gray-600">{t('aboutMissionDesc')}</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
-              <h3 className="font-bold text-lg mb-2">Nilai Kami</h3>
-              <p className="text-gray-600">Kesederhanaan, keandalan, dan fokus pada kepuasan pelanggan</p>
+              <h3 className="font-bold text-lg mb-2">{t('aboutValues')}</h3>
+              <p className="text-gray-600">{t('aboutValuesDesc')}</p>
             </div>
           </div>
         </div>

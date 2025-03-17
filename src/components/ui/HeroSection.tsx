@@ -2,31 +2,33 @@
 import React from 'react';
 import Button from '../common/Button';
 import AnimatedImage from '../common/AnimatedImage';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection: React.FC = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="pt-32 pb-20 px-4 md:px-6 lg:px-8 overflow-hidden">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col items-start space-y-6 animate-slide-up">
             <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-secondary text-secondary-foreground">
-              Solusi Kasir Terbaik untuk Bisnis Anda
+              {t('heroTagline')}
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-              <span className="block">Aplikasi Kasir</span>
-              <span className="block">Modern &</span>
-              <span className="block">Mudah Digunakan</span>
+              <span className="block">{t('heroTitle1')}</span>
+              <span className="block">{t('heroTitle2')}</span>
+              <span className="block">{t('heroTitle3')}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-md">
-              Solusi point of sale yang membantu bisnis Anda tumbuh dengan fitur lengkap, 
-              laporan real-time, dan integrasi pembayaran digital.
+              {t('heroDescription')}
             </p>
             <div className="flex flex-wrap gap-4 mt-6">
               <Button size="lg">
-                Coba Gratis 14 Hari
+                {t('heroTryFree')}
               </Button>
               <Button variant="outline" size="lg">
-                Demo Aplikasi
+                {t('heroDemo')}
               </Button>
             </div>
             <div className="flex items-center gap-4 mt-4 text-sm">
@@ -36,7 +38,7 @@ const HeroSection: React.FC = () => {
                 ))}
               </div>
               <p className="text-muted-foreground">
-                <span className="font-semibold text-foreground">1,000+</span> bisnis telah menggunakan layanan kami
+                <span className="font-semibold text-foreground">1,000+</span> {t('heroUsers')}
               </p>
             </div>
           </div>

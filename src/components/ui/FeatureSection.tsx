@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { CheckCircle, Zap, Shield, BarChart4, Clock, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -31,6 +32,7 @@ const FeatureCard = ({ icon, title, description, className, animationDelay }: Fe
 
 const FeatureSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,33 +59,33 @@ const FeatureSection = () => {
   const features = [
     {
       icon: <Zap className="h-6 w-6" />,
-      title: "Point of Sale Cepat",
-      description: "Proses transaksi dengan cepat dan efisien untuk mengurangi antrian pelanggan.",
+      titleKey: 'featurePos',
+      descriptionKey: 'featurePosDesc',
     },
     {
       icon: <BarChart4 className="h-6 w-6" />,
-      title: "Laporan Bisnis",
-      description: "Dapatkan wawasan bisnis dengan laporan penjualan dan inventori yang komprehensif.",
+      titleKey: 'featureReports',
+      descriptionKey: 'featureReportsDesc',
     },
     {
       icon: <Shield className="h-6 w-6" />,
-      title: "Keamanan Data",
-      description: "Data Anda aman dengan sistem enkripsi dan backup otomatis di cloud.",
+      titleKey: 'featureSecurity',
+      descriptionKey: 'featureSecurityDesc',
     },
     {
       icon: <Users className="h-6 w-6" />,
-      title: "Manajemen Pelanggan",
-      description: "Kelola pelanggan, buat program loyalitas, dan tingkatkan retensi pelanggan.",
+      titleKey: 'featureCustomer',
+      descriptionKey: 'featureCustomerDesc',
     },
     {
       icon: <Clock className="h-6 w-6" />,
-      title: "Operasi 24/7",
-      description: "Sistem yang dapat diandalkan dengan waktu aktif 99.9% untuk bisnis tanpa gangguan.",
+      titleKey: 'featureOperation',
+      descriptionKey: 'featureOperationDesc',
     },
     {
       icon: <CheckCircle className="h-6 w-6" />,
-      title: "Manajemen Inventori",
-      description: "Lacak stok secara real-time, atur peringatan stok rendah, dan kelola pesanan.",
+      titleKey: 'featureInventory',
+      descriptionKey: 'featureInventoryDesc',
     },
   ];
 
@@ -91,9 +93,11 @@ const FeatureSection = () => {
     <section id="features" className="section-padding bg-gray-50">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="headline mb-4">Fitur Kasir yang <span className="text-black">Powerful</span></h2>
+          <h2 className="headline mb-4">
+            {t('featuresTitle')} <span className="text-black">{t('featuresHighlight')}</span>
+          </h2>
           <p className="subheadline">
-            Solusi bisnis lengkap yang memudahkan pengelolaan toko dan meningkatkan efisiensi operasional
+            {t('featuresDescription')}
           </p>
         </div>
         
@@ -102,8 +106,8 @@ const FeatureSection = () => {
             <FeatureCard
               key={index}
               icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
+              title={t(feature.titleKey)}
+              description={t(feature.descriptionKey)}
               className={cn(
                 "opacity-0",
                 isVisible && "animate-fade-in opacity-100"

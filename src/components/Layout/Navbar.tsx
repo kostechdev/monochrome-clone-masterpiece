@@ -1,14 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { LoginDialog, RegisterDialog } from '@/components/ui/AuthForms';
+import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,21 +61,37 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <a href="#features" className="font-medium hover:text-black link-hover">
-            Fitur
+            {t('navFeatures')}
           </a>
           <a href="#about" className="font-medium hover:text-black link-hover">
-            Tentang Kami
+            {t('navAbout')}
           </a>
           <a href="#pricing" className="font-medium hover:text-black link-hover">
-            Harga
+            {t('navPricing')}
           </a>
           <a href="#contact" className="font-medium hover:text-black link-hover">
-            Kontak
+            {t('navContact')}
           </a>
         </nav>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons and Language Switcher */}
         <div className="hidden md:flex items-center gap-4">
+          {/* Language Switcher */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 p-2 rounded-md hover:bg-gray-100 transition-colors">
+              <Globe className="h-4 w-4" />
+              <span className="uppercase">{language}</span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => setLanguage('id')} className={language === 'id' ? 'font-bold' : ''}>
+                Indonesia (ID)
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('en')} className={language === 'en' ? 'font-bold' : ''}>
+                English (EN)
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          
           <LoginDialog />
           <RegisterDialog />
         </div>
@@ -101,29 +125,48 @@ const Navbar: React.FC = () => {
             className="text-lg font-medium py-2 border-b border-gray-100"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Fitur
+            {t('navFeatures')}
           </a>
           <a
             href="#about"
             className="text-lg font-medium py-2 border-b border-gray-100"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Tentang Kami
+            {t('navAbout')}
           </a>
           <a
             href="#pricing"
             className="text-lg font-medium py-2 border-b border-gray-100"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Harga
+            {t('navPricing')}
           </a>
           <a
             href="#contact"
             className="text-lg font-medium py-2 border-b border-gray-100"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Kontak
+            {t('navContact')}
           </a>
+          
+          {/* Language Switcher in Mobile Menu */}
+          <div className="py-2 border-b border-gray-100">
+            <div className="flex gap-4">
+              <button 
+                onClick={() => setLanguage('id')}
+                className={cn("px-3 py-1 rounded", language === 'id' ? "bg-black text-white" : "bg-gray-100")}
+              >
+                ID
+              </button>
+              <button 
+                onClick={() => setLanguage('en')}
+                className={cn("px-3 py-1 rounded", language === 'en' ? "bg-black text-white" : "bg-gray-100")}
+              >
+                EN
+              </button>
+            </div>
+          </div>
+          
           <div className="flex flex-col gap-4 mt-4">
             <LoginDialog />
             <RegisterDialog />
