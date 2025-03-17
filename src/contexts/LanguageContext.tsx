@@ -42,12 +42,12 @@ export const translations: Translations = {
     en: 'Modern &',
   },
   heroTitle3: {
-    id: 'Mudah Digunakan',
-    en: 'Easy to Use',
+    id: 'Menyederhanakan transaksi Anda',
+    en: 'Simplifying your transactions',
   },
   heroDescription: {
-    id: 'Solusi point of sale yang membantu bisnis Anda tumbuh dengan fitur lengkap, laporan real-time, dan integrasi pembayaran digital.',
-    en: 'A point of sale solution that helps your business grow with complete features, real-time reports, and digital payment integration.',
+    id: 'Solusi Point Of Sales untuk UMKM membantu bisnis Anda tumbuh dengan fitur lengkap, laporan real-time, dan integrasi pembayaran digital.',
+    en: 'Point Of Sales Solution for SMEs helps your business grow with complete features, real-time reports, and digital payment integration.',
   },
   heroTryFree: {
     id: 'Coba Gratis 14 Hari',
@@ -132,8 +132,8 @@ export const translations: Translations = {
     en: 'About Us',
   },
   aboutDescription: {
-    id: 'Pelajari bagaimana KasirMonochrome dapat membantu bisnis Anda berkembang',
-    en: 'Learn how KasirMonochrome can help your business grow',
+    id: 'Pelajari bagaimana KOSTPOS dapat membantu bisnis Anda berkembang',
+    en: 'Learn how KOSTPOS can help your business grow',
   },
   aboutVision: {
     id: 'Visi Kami',

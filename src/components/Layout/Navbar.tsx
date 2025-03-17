@@ -34,6 +34,19 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Effect to prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -55,7 +68,7 @@ const Navbar: React.FC = () => {
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="text-2xl font-bold">
-          KasirMonochrome
+          KOSTPOS
         </a>
 
         {/* Desktop Navigation */}
@@ -110,10 +123,19 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={cn(
+          'fixed inset-0 top-[72px] backdrop-blur-lg bg-black/50 z-40 transition-opacity duration-300 md:hidden',
+          isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        )}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
+
       {/* Mobile Menu */}
       <div
         className={cn(
-          'fixed inset-0 top-[72px] bg-white z-40 transition-all duration-300 ease-in-out transform md:hidden',
+          'fixed inset-0 top-[72px] bg-white z-50 transition-all duration-300 ease-in-out transform md:hidden',
           isMobileMenuOpen
             ? 'translate-x-0 opacity-100'
             : 'translate-x-full opacity-0'
