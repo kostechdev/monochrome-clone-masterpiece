@@ -56,21 +56,6 @@ const AboutUsSection = () => {
               allowFullScreen
             ></iframe>
           </div>
-          
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
-              <h3 className="font-bold text-lg mb-2">{t('aboutVision')}</h3>
-              <p className="text-gray-600">{t('aboutVisionDesc')}</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
-              <h3 className="font-bold text-lg mb-2">{t('aboutMission')}</h3>
-              <p className="text-gray-600">{t('aboutMissionDesc')}</p>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 text-center">
-              <h3 className="font-bold text-lg mb-2">{t('aboutValues')}</h3>
-              <p className="text-gray-600">{t('aboutValuesDesc')}</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

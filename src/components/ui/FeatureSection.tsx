@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { CheckCircle, Zap, Shield, BarChart4, Clock, Users } from 'lucide-react';
+import { Zap, BarChart4, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -71,22 +71,7 @@ const FeatureSection = () => {
       icon: <Shield className="h-6 w-6" />,
       titleKey: 'featureSecurity',
       descriptionKey: 'featureSecurityDesc',
-    },
-    {
-      icon: <Users className="h-6 w-6" />,
-      titleKey: 'featureCustomer',
-      descriptionKey: 'featureCustomerDesc',
-    },
-    {
-      icon: <Clock className="h-6 w-6" />,
-      titleKey: 'featureOperation',
-      descriptionKey: 'featureOperationDesc',
-    },
-    {
-      icon: <CheckCircle className="h-6 w-6" />,
-      titleKey: 'featureInventory',
-      descriptionKey: 'featureInventoryDesc',
-    },
+    }
   ];
 
   return (
@@ -101,7 +86,7 @@ const FeatureSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {features.map((feature, index) => (
             <FeatureCard
               key={index}

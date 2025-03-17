@@ -26,10 +26,10 @@ const PricingPlan = ({
   return (
     <div 
       className={cn(
-        "bg-white rounded-lg border overflow-hidden transition-all flex flex-col",
+        "bg-white rounded-lg border overflow-hidden transition-all flex flex-col transform duration-300",
         popular 
           ? "border-black shadow-md scale-[1.02] z-10" 
-          : "border-gray-200 hover:border-gray-300 hover:shadow-sm",
+          : "border-gray-200 hover:border-black hover:shadow-lg hover:scale-105",
         className
       )}
       style={{ animationDelay }}
