@@ -42,8 +42,8 @@ export const translations: Translations = {
     en: 'Modern &',
   },
   heroTitle3: {
-    id: 'Menyederhanakan transaksi Anda',
-    en: 'Simplifying your transactions',
+    id: 'Sederhanakan Transaksi Bisnis Kamu',
+    en: 'Simplify Your Business Transactions',
   },
   heroDescription: {
     id: 'Solusi Point Of Sales untuk UMKM membantu bisnis Anda tumbuh dengan fitur lengkap, laporan real-time, dan integrasi pembayaran digital.',

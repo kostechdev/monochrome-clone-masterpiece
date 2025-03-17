@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Instagram, Youtube, Phone } from 'lucide-react';
 
@@ -9,7 +8,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
           <div className="lg:col-span-2">
             <a href="/" className="inline-block mb-6">
-              <h2 className="text-2xl font-bold">KasirMonochrome</h2>
+              <h2 className="text-2xl font-bold">KOSTPOS</h2>
             </a>
             <p className="text-muted-foreground mb-6 max-w-md">
               Solusi kasir modern dengan tampilan elegan dan fitur lengkap untuk membantu bisnis Anda tumbuh.
@@ -63,7 +62,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} KasirMonochrome. Hak Cipta Dilindungi.
+            © {new Date().getFullYear()} KOSTPOS. Hak Cipta Dilindungi.
           </p>
           <div className="flex flex-wrap gap-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">

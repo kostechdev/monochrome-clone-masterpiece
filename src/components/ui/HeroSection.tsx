@@ -15,10 +15,10 @@ const HeroSection: React.FC = () => {
             <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-secondary text-secondary-foreground">
               {t('heroTagline')}
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight">
               <span className="block">{t('heroTitle1')}</span>
               <span className="block">{t('heroTitle2')}</span>
-              <span className="block">{t('heroTitle3')}</span>
+              <span className="block text-primary">{t('heroTitle3')}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-md">
               {t('heroDescription')}
