@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, MessageSquare, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import Button from '../common/Button';
 
 const ContactSection: React.FC = () => {
@@ -121,8 +121,8 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-medium">Email</h4>
-                    <p className="text-muted-foreground mt-1">info@kasirmonochrome.id</p>
-                    <p className="text-muted-foreground">support@kasirmonochrome.id</p>
+                    <p className="text-muted-foreground mt-1">admin@kost-pos.com</p>
+                    <p className="text-muted-foreground">support@kost-pos.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -138,22 +138,6 @@ const ContactSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-card border border-border rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Live Chat</h3>
-              <p className="text-muted-foreground mb-6">
-                Butuh bantuan segera? Chat dengan tim support kami yang siap membantu Anda.
-              </p>
-              <Button 
-                variant="outline" 
-                fullWidth 
-                className="flex items-center justify-center gap-2"
-                onClick={() => window.open('https://wa.me/6283879023153', '_blank')}
-              >
-                <MessageSquare className="w-5 h-5" />
-                <span>Mulai Chat</span>
-              </Button>
             </div>
           </div>
         </div>
