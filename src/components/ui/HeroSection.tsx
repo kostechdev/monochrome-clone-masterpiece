@@ -32,11 +32,10 @@ const HeroSection: React.FC = () => {
           
           <div className="relative">
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-secondary rounded-full animate-pulse opacity-70 blur-xl -z-10"></div>
-            <AnimatedImage 
+            <img 
               src="/lovable-uploads/d029158e-e30a-4faa-9dd6-6b648b5ee417.png" 
               alt="KOSTPOS Application"
-              className="rounded-xl shadow-2xl border border-gray-200 w-full"
-              animation="float"
+              className="rounded-xl shadow-2xl border border-gray-200 w-full max-w-[110%] mx-auto"
             />
           </div>
         </div>
