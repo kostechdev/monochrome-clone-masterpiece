@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Button from '../common/Button';
-import AnimatedImage from '../common/AnimatedImage';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection: React.FC = () => {
@@ -35,7 +34,7 @@ const HeroSection: React.FC = () => {
             <img 
               src="/lovable-uploads/d029158e-e30a-4faa-9dd6-6b648b5ee417.png" 
               alt="KOSTPOS Application"
-              className="rounded-xl shadow-2xl border border-gray-200 w-full max-w-[110%] mx-auto"
+              className="rounded-xl shadow-2xl border border-gray-200 w-full max-w-[120%] mx-auto"
             />
           </div>
         </div>
