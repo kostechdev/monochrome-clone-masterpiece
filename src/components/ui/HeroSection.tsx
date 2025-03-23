@@ -10,7 +10,7 @@ const HeroSection: React.FC = () => {
     <section className="pt-40 pb-20 px-4 md:px-6 lg:px-8 overflow-hidden bg-black text-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="flex flex-col items-start space-y-6 animate-slide-up">
+          <div className="flex flex-col items-start space-y-6">
             <div className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-secondary text-secondary-foreground">
               {t('heroTagline')}
             </div>

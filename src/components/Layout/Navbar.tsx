@@ -75,11 +75,12 @@ const Navbar: React.FC = () => {
         )}
       >
         {/* Logo */}
-        <a href="/" className="text-xl font-bold text-white flex items-center gap-2">
-          <div className="bg-white text-black w-8 h-8 rounded-md flex items-center justify-center font-bold">
-            K
-          </div>
-          <span>KOSTPOS</span>
+        <a href="/" className="flex items-center gap-2">
+          <img 
+            src="/lovable-uploads/b123027b-f6d1-4147-8ee5-d9202e545d49.png" 
+            alt="KOSTPOS" 
+            className="h-10"
+          />
         </a>
 
         {/* Desktop Navigation */}
