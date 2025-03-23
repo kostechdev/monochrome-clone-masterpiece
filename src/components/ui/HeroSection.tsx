@@ -27,27 +27,14 @@ const HeroSection: React.FC = () => {
               <Button size="lg">
                 {t('heroTryFree')}
               </Button>
-              <Button variant="outline" size="lg">
-                {t('heroDemo')}
-              </Button>
-            </div>
-            <div className="flex items-center gap-4 mt-4 text-sm">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-gray-300 ring-2 ring-white" />
-                ))}
-              </div>
-              <p className="text-muted-foreground">
-                <span className="font-semibold text-foreground">1,000+</span> {t('heroUsers')}
-              </p>
             </div>
           </div>
           
           <div className="relative">
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-secondary rounded-full animate-pulse opacity-70 blur-xl -z-10"></div>
             <AnimatedImage 
-              src="/placeholder.svg" 
-              alt="Aplikasi Kasir Dashboard"
+              src="/lovable-uploads/d029158e-e30a-4faa-9dd6-6b648b5ee417.png" 
+              alt="KOSTPOS Application"
               className="rounded-xl shadow-2xl border border-gray-200 w-full"
               animation="float"
             />

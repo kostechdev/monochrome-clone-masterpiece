@@ -50,8 +50,8 @@ export const translations: Translations = {
     en: 'Point Of Sales Solution for SMEs helps your business grow with complete features, real-time reports, and digital payment integration.',
   },
   heroTryFree: {
-    id: 'Coba Gratis 14 Hari',
-    en: 'Try Free for 14 Days',
+    id: 'Daftar Gratis',
+    en: 'Register for Free',
   },
   heroDemo: {
     id: 'Demo Aplikasi',
