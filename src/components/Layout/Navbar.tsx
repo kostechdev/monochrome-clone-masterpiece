@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,35 +55,42 @@ const Navbar: React.FC = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 md:px-6 lg:px-8',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4',
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-sm translate-y-0'
-          : 'bg-transparent'
+          ? 'bg-black/80 backdrop-blur-md shadow-md translate-y-0 px-4'
+          : 'bg-black px-8'
       )}
     >
       {/* Scroll Progress Indicator */}
       <div className="absolute bottom-0 left-0 w-full h-1">
-        <Progress value={scrollProgress} className="h-1 rounded-none bg-gray-100" />
+        <Progress value={scrollProgress} className="h-1 rounded-none bg-gray-800" />
       </div>
 
-      <div className="container flex items-center justify-between">
+      <div 
+        className={cn(
+          "flex items-center justify-between mx-auto",
+          isScrolled 
+            ? "max-w-4xl bg-black/90 backdrop-blur-md py-2 px-6 rounded-full"
+            : "container"
+        )}
+      >
         {/* Logo */}
-        <a href="/" className="text-2xl font-bold">
-          KOSTPOS
+        <a href="/" className="text-xl font-bold text-white flex items-center gap-2">
+          <div className="bg-white text-black w-8 h-8 rounded-md flex items-center justify-center font-bold">
+            K
+          </div>
+          <span>KOSTPOS</span>
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#features" className="font-medium hover:text-black link-hover">
+          <a href="#features" className="font-medium text-white/80 hover:text-white transition-colors">
             {t('navFeatures')}
           </a>
-          <a href="#about" className="font-medium hover:text-black link-hover">
-            {t('navAbout')}
-          </a>
-          <a href="#pricing" className="font-medium hover:text-black link-hover">
+          <a href="#pricing" className="font-medium text-white/80 hover:text-white transition-colors">
             {t('navPricing')}
           </a>
-          <a href="#contact" className="font-medium hover:text-black link-hover">
+          <a href="#contact" className="font-medium text-white/80 hover:text-white transition-colors">
             {t('navContact')}
           </a>
         </nav>
@@ -91,7 +99,7 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center gap-4">
           {/* Language Switcher */}
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 p-2 rounded-md hover:bg-gray-100 transition-colors">
+            <DropdownMenuTrigger className="flex items-center gap-1 p-2 rounded-md text-white/70 hover:text-white hover:bg-white/10 transition-colors">
               <Globe className="h-4 w-4" />
               <span className="uppercase">{language}</span>
             </DropdownMenuTrigger>
@@ -105,13 +113,18 @@ const Navbar: React.FC = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           
-          <LoginDialog />
-          <RegisterDialog />
+          <span className="text-white/70">
+            <LoginDialog />
+          </span>
+          
+          <Button className="bg-white text-black hover:bg-white/90 rounded-md">
+            {t('bookCall')}
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden flex items-center justify-center text-black"
+          className="md:hidden flex items-center justify-center text-white"
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
         >
@@ -135,7 +148,7 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       <div
         className={cn(
-          'fixed inset-0 top-[72px] bg-white z-50 transition-all duration-300 ease-in-out transform md:hidden',
+          'fixed inset-0 top-[72px] bg-black z-50 transition-all duration-300 ease-in-out transform md:hidden',
           isMobileMenuOpen
             ? 'translate-x-0 opacity-100'
             : 'translate-x-full opacity-0'
@@ -144,45 +157,38 @@ const Navbar: React.FC = () => {
         <nav className="flex flex-col p-6 gap-6">
           <a
             href="#features"
-            className="text-lg font-medium py-2 border-b border-gray-100"
+            className="text-lg font-medium py-2 border-b border-gray-800 text-white"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             {t('navFeatures')}
           </a>
           <a
-            href="#about"
-            className="text-lg font-medium py-2 border-b border-gray-100"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {t('navAbout')}
-          </a>
-          <a
             href="#pricing"
-            className="text-lg font-medium py-2 border-b border-gray-100"
+            className="text-lg font-medium py-2 border-b border-gray-800 text-white"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             {t('navPricing')}
           </a>
           <a
             href="#contact"
-            className="text-lg font-medium py-2 border-b border-gray-100"
+            className="text-lg font-medium py-2 border-b border-gray-800 text-white"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             {t('navContact')}
           </a>
           
           {/* Language Switcher in Mobile Menu */}
-          <div className="py-2 border-b border-gray-100">
+          <div className="py-2 border-b border-gray-800">
             <div className="flex gap-4">
               <button 
                 onClick={() => setLanguage('id')}
-                className={cn("px-3 py-1 rounded", language === 'id' ? "bg-black text-white" : "bg-gray-100")}
+                className={cn("px-3 py-1 rounded", language === 'id' ? "bg-white text-black" : "bg-gray-800 text-white")}
               >
                 ID
               </button>
               <button 
                 onClick={() => setLanguage('en')}
-                className={cn("px-3 py-1 rounded", language === 'en' ? "bg-black text-white" : "bg-gray-100")}
+                className={cn("px-3 py-1 rounded", language === 'en' ? "bg-white text-black" : "bg-gray-800 text-white")}
               >
                 EN
               </button>
@@ -191,7 +197,9 @@ const Navbar: React.FC = () => {
           
           <div className="flex flex-col gap-4 mt-4">
             <LoginDialog />
-            <RegisterDialog />
+            <Button className="bg-white text-black hover:bg-white/90 rounded-md">
+              {t('bookCall')}
+            </Button>
           </div>
         </nav>
       </div>

@@ -28,6 +28,10 @@ export const translations: Translations = {
     id: 'Kontak',
     en: 'Contact',
   },
+  bookCall: {
+    id: 'Hubungi Kami',
+    en: 'Book a call',
+  },
   // Hero Section
   heroTagline: {
     id: 'Solusi Kasir Terbaik untuk Bisnis Anda',
@@ -159,7 +163,7 @@ export const translations: Translations = {
     id: 'Kesederhanaan, keandalan, dan fokus pada kepuasan pelanggan',
     en: 'Simplicity, reliability, and focus on customer satisfaction',
   },
-  // Other sections (add as needed)
+  // Other sections
   login: {
     id: 'Masuk',
     en: 'Login',
